@@ -1,0 +1,154 @@
+Styles.css
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f6f6f6;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden; /
+}
+
+
+.iphone-chat-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+.iphone-wrapper {
+  background-image: url(/static/phone_14_01.jpg);
+  background-size: cover;
+  background-position: -5.5cm center; 
+  width: 380px;
+  height: 800px;
+  position: relative;
+}
+
+.chat-container {
+  position: absolute;
+  top: 9%;   
+  left: 5%;  
+  width: 90%;  
+  height: 70%; 
+  overflow: auto;
+  padding: 10%; 
+  box-sizing: border-box;
+
+}
+
+.msger-header {
+  background-color: transparent; 
+  border-bottom: 1px solid transparent; 
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  .msger-header
+  position : fixed; 
+
+}
+
+.msger-header-title {
+  font-weight: bold;
+}
+
+.msger-chat {
+  flex: 1;
+  margin-bottom: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.msg {
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 20px;
+}
+
+.msg:last-child {
+  margin-bottom: 0;
+}
+
+.msg-img {
+  border-radius: 50%;
+  height: 50px;
+  min-width: 50px;
+  object-fit: cover;
+}
+
+.msg-bubble {
+  background-color: #dedede;
+  border-radius: 15px;
+  display: flex;
+  flex-flow: column wrap;
+  margin-left: 15px;  
+  max-width: 70%;
+  padding: 10px 15px;
+}
+
+.msg-info {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.msg-info-name {
+  font-weight: bold;
+}
+
+.msg-text {
+  font-size: 0.9em;
+}
+
+.msg.left-msg .msg-img {
+  margin-right: 10px;
+}
+
+.msg.left-msg .msg-bubble {
+  margin-left: -52px;
+  margin-right: auto;
+}
+
+.msg.right-msg .msg-img {
+  margin-left: 10px;
+  
+}
+
+.msg.right-msg .msg-bubble {
+  margin-left: auto;
+  margin-right: 0;
+  background-color: #007bff;
+  color: #fff;
+}
+
+.msger-inputarea {
+  position: fixed;
+  bottom: 2cm;
+  left: 12.7cm; 
+  right: 0cm;
+  display: flex;
+  padding: 20px;
+  background-color: transparent;
+  border-top: 1px solid transparent;
+  width: calc(25% - 1.5cm); 
+}
+
+.msger-input {
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  width: 85%;
+}
+
+.msger-send-btn {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+}
