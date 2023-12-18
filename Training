@@ -1,0 +1,484 @@
+# --- LIBRARY IMPORTS ---
+# Standard Libraries
+import os
+import json
+import string
+import pickle
+import nltk
+from dateutil.parser import parse
+from collections import Counter
+import datetime
+
+# Data Processing and ML Libraries
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.preprocessing import LabelEncoder
+from imblearn.over_sampling import SMOTE
+from sklearn.utils import class_weight as sk_class_weight
+from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score, roc_curve, auc, confusion_matrix
+from sklearn.metrics import classification_report
+import shap
+
+# Deep Learning Libraries
+import tensorflow as tf
+from tensorflow.keras.models import Sequential, Model
+from tensorflow.keras.layers import (Embedding, Conv1D, GlobalMaxPooling1D, Dense, Dropout, BatchNormalization, 
+                                    SpatialDropout1D, Activation, MaxPooling1D, concatenate, Input)
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.regularizers import l2
+from tensorflow.keras.optimizers import Adam
+from keras.utils import to_categorical
+from keras_tuner import HyperModel, RandomSearch
+from nltk.tokenize import word_tokenize
+from tensorflow.keras.models import load_model
+from tensorflow.keras.callbacks import ReduceLROnPlateau
+from tensorflow.keras.callbacks import EarlyStopping
+
+#Data Visualization Libraries
+import matplotlib.pyplot as plt
+import seaborn as sns
+import matplotlib.gridspec as gridspec
+import pydot
+
+
+
+# Setting global constants
+EMBEDDING_DIM = 200
+TEST_SIZE = 0.2
+RANDOM_STATE = 42
+DATA_DIR = "/Users/amankwatiaa/Documents/Hilbot chatbot"
+
+
+# --- SETUP AND INITIALIZATION ---
+nltk.download('wordnet')
+nltk.download('stopwords')
+nltk.download('punkt')
+
+# Instantiate the lemmatizer and set stopwords
+lemmatizer = nltk.WordNetLemmatizer()
+stop_words = set(nltk.corpus.stopwords.words("english"))
+
+
+
+# --- DATA PROCESSING UTILITIES ---
+#Dictionary of synonyms for common financial terms
+SYNONYMS = {
+    'spend': 'expense',
+    'spending': 'expense',
+    'outlay': 'expense',
+    'disbursement': 'expense',
+    'cost': 'expense',
+    'charge': 'expense',
+    'expenditure': 'expense',
+    'outgoings': 'expense',
+    'outflow': 'expense',
+    
+    'save': 'savings',
+    'saving': 'savings',
+    'savings': 'savings',
+    'reserve': 'savings',
+    'put aside': 'savings',
+    'set aside': 'savings',
+    
+    'earn': 'income',
+    'earning': 'income',
+    'earnings': 'income',
+    'revenue': 'income',
+    'revenues': 'income',
+    'profit': 'income',
+    'gain': 'income',
+    'return': 'income',
+    'yield': 'income',
+    'proceeds': 'income',
+    
+    'budget': 'budget',
+    'budgeting': 'budget',
+    'allocation': 'budget',
+    'financial plan': 'budget',
+    'spending plan': 'budget',
+    'financial blueprint': 'budget',
+    
+    'networth': 'net worth',
+    'net value': 'net worth',
+    'wealth': 'net worth',
+    'assets minus liabilities': 'net worth',
+    
+    # Additional synonyms
+    'investment': 'investing',
+    'invest': 'investing',
+    'portfolio': 'investing',
+    'capital': 'funds',
+    'fund': 'funds',
+    'resources': 'funds',
+    'capitalization': 'funds',
+    
+    'liabilities': 'debts',
+    'debt': 'liabilities',
+    'owed money': 'liabilities',
+    'financial obligation': 'liabilities',
+    'indebtedness': 'liabilities',
+    
+    'cash': 'money',
+    'currency': 'money',
+    'funds': 'money',
+    'capital': 'money',
+    
+    # Synonyms for "goal"
+    'objective': 'goal',
+    'target': 'goal',
+    'aim': 'goal',
+    'purpose': 'goal',
+    'intention': 'goal',
+    
+    # Synonyms for "investment"
+    'venture': 'investment',
+    'undertaking': 'investment',
+    'enterprise': 'investment',
+    'project': 'investment',
+    
+    # Synonyms for "dividend"
+    'distribution': 'dividend',
+    'payout': 'dividend',
+    
+    # Synonyms for "interest"
+    'dividend': 'interest',
+    'yield': 'interest',
+    'return': 'interest',
+}
+
+# Function to recognize and format dates
+def recognize_date(date_string):
+    try:
+        dt = parse(date_string, fuzzy=True)
+        return dt.strftime('%B %Y')
+    except:
+        return date_string
+
+# Function to replace words with their synonyms
+def replace_synonyms(text):
+    for word, synonym in SYNONYMS.items():
+        text = text.replace(word, synonym)
+    return text
+
+# Function to preprocess text data
+def preprocess_data(pattern):
+    pattern = recognize_date(pattern)
+    pattern = replace_synonyms(pattern)
+    exclude = set(string.punctuation) - {'$'}
+    pattern = ''.join(ch for ch in pattern if ch not in exclude)
+    words = word_tokenize(pattern)
+    return [lemmatizer.lemmatize(word.lower()) for word in words if word.lower() not in stop_words]
+
+# Function to load JSON data from a file
+def load_json_data(filepath):
+    with open(filepath, 'r') as file:
+        return json.load(file)
+
+# Function to load CSV data from a file
+def load_csv_data(filepath):
+    return pd.read_csv(filepath)
+
+# Load JSON data
+intents = load_json_data(os.path.join(DATA_DIR, 'data.json'))
+
+# Load CSV data
+data = load_csv_data(os.path.join(DATA_DIR, 'HilData.csv'))
+
+# --- DATA PREPARATION ---
+documents, classes = [], []
+
+# Iterate through the intents and their patterns
+for intent in intents['intents']:
+    for pattern in intent['patterns']:
+        w = preprocess_data(pattern) # Process the pattern
+        documents.append((' '.join(w), intent['tag'])) # Combine words and add intent tag
+        if intent['tag'] not in classes:
+            classes.append(intent['tag'])  # Add intent tag to classes if not already present
+
+# Iterate through rows in the data CSV
+for index, row in data.iterrows():
+    intent_tag = row['type']
+    pattern = f"{row['category']} {row['month']} {row['amount']} {row['year']}"
+    w = preprocess_data(pattern)   # Process the pattern
+    documents.append((' '.join(w), intent_tag))  # Combine words and add intent tag
+    if intent_tag not in classes:
+        classes.append(intent_tag)    # Add intent tag to classes if not already present
+
+print("Number of documents:", len(documents))
+print("First 5 documents:", documents[:5])  # Validation
+
+classes = sorted(list(set(classes)))  # Sort and convert classes to a list
+
+# Create a TF-IDF vectorizer and transform documents into a TF-IDF matrix
+tfidf_vectorizer = TfidfVectorizer()
+tfidf_matrix = tfidf_vectorizer.fit_transform([doc[0] for doc in documents])
+feature_names = tfidf_vectorizer.get_feature_names_out()
+
+# Get TF-IDF values for a single document and create a dictionary mapping features to TF-IDF scores
+doc = documents[0][0]
+tfidf_vec = tfidf_matrix[0].todense().tolist()[0]
+tfidf_dict = dict(zip(feature_names, tfidf_vec))
+
+
+# Load pre-trained GloVe word embeddings
+def load_glove_vectors(glove_path):
+    embeddings = {}
+    with open(glove_path, 'r', encoding='utf-8') as file:
+        for line in file:
+            values = line.split()
+            word = values[0]
+            vector = np.asarray(values[1:], dtype='float32')
+            embeddings[word] = vector
+    return embeddings
+
+embedding_dim = 200  # For the GloVe model with 200-dimensional embeddings
+embeddings= load_glove_vectors('/Users/amankwatiaa/Documents/Hilbot chatbot/glove.6B/glove.6B.200d.txt')
+
+
+# Tokenization
+tokenizer = Tokenizer(oov_token="<OOV>")
+tokenizer.fit_on_texts([doc[0] for doc in documents])
+print("Number of unique tokens:", len(tokenizer.word_index))
+
+# Creating embedding matrix
+vocab_size = len(tokenizer.word_index) + 1
+embedding_dim = 200
+embedding_matrix = np.zeros((vocab_size, embedding_dim))
+for word, idx in tokenizer.word_index.items():
+    embedding_vector = embeddings.get(word)
+    if embedding_vector is not None:
+        embedding_matrix[idx] = embedding_vector
+    elif word == "<OOV>":
+        embedding_matrix[idx] = np.random.randn(embedding_dim)
+
+# TF-IDF vectorization
+tfidf_vectorizer = TfidfVectorizer()
+tfidf_features = tfidf_vectorizer.fit_transform([doc[0] for doc in documents])
+tfidf_features_array = tfidf_features.toarray()  # Convert TF-IDF features to array
+input_tfidf_dimension = tfidf_features_array.shape[1]  
+
+# Print the shape
+print(f"TF-IDF shape is: {tfidf_features.shape}")
+
+# Tokenize and pad sequences
+sequences = tokenizer.texts_to_sequences([doc[0] for doc in documents])
+maxlen = 200
+
+# Convert sequences to padded sequences 
+padded_sequences = pad_sequences(sequences, maxlen=maxlen, padding='post')
+print(f"padded sequences is : {padded_sequences.shape}")
+
+#encode labels
+encoder = LabelEncoder()
+encoded_labels = encoder.fit_transform([doc[1] for doc in documents])
+train_y_one_hot = np.eye(len(classes))[encoded_labels]
+
+
+
+# Split both tfidf_features_array and padded_sequences into training and validation sets
+train_x_tfidf, val_x_tfidf, train_x_padded, val_x_padded, train_y, val_y = train_test_split(
+    tfidf_features_array, padded_sequences, train_y_one_hot, test_size=0.2, random_state=42)
+
+# Splitting for encoded labels
+_, _, _, _, encoded_train_y, encoded_val_y = train_test_split(
+    tfidf_features_array, padded_sequences, encoded_labels, test_size=0.2, random_state=42)
+
+print(f"train_x_tfidf shape:{train_x_tfidf.shape}")
+print(f"train_x_padded shape: {train_x_padded.shape}")
+
+# Balance the dataset using SMOTE for both matrices
+smote = SMOTE(random_state=42, k_neighbors=2)
+train_x_tfidf_smote, encoded_train_y_smote = smote.fit_resample(train_x_tfidf, encoded_train_y)
+train_x_padded_smote, _ = smote.fit_resample(train_x_padded, encoded_train_y)  # _ because labels remain the same
+
+# Convert the resampled labels back to one-hot encoding
+train_y_smote = to_categorical(encoded_train_y_smote)
+
+
+
+# Compute the class weights
+computed_class_weights = sk_class_weight.compute_class_weight('balanced', classes=np.unique(encoded_train_y), y=encoded_train_y)
+print("Computed Class Weights:", computed_class_weights)
+
+# Initialize wandb
+config_dictionary = {
+    'batch_size': 32,
+    'embedding_dim': 200,
+}
+
+#wandb.login(key="a7e4f5be0707dd9191daa00f20532a07647dc2d8")
+#wandb.init(project="Hilbot Financial Assistant", config=config_dictionary)
+
+
+
+# Define the hypermodel class
+class CNNHyperModel(HyperModel):
+    def __init__(self, vocab_size, embedding_dim, embedding_matrix, num_classes, input_tfidf_dim):
+        self.vocab_size = vocab_size
+        self.embedding_dim = embedding_dim
+        self.embedding_matrix = embedding_matrix
+        self.num_classes = num_classes
+        self.input_tfidf_dim = input_tfidf_dim
+
+    def build(self, hp):
+        optimizer_choice = hp.Choice('optimizer', values=['adam', 'rmsprop', 'sgd', 'adagrad', 'adadelta'])
+
+        # Embedding Input
+        embedding_input = Input(shape=(None,), name='embedding_input')
+        x1 = Embedding(self.vocab_size, self.embedding_dim, weights=[self.embedding_matrix], trainable=False)(embedding_input)
+        x1 = SpatialDropout1D(hp.Float('spatial_dropout', min_value=0.2, max_value=0.7, step=0.1, default=0.5))(x1)
+
+        # Multiple Conv1D Layers
+        for i in range(hp.Int('num_conv_layers', 1, 3)):  # Adjust the range based on your preferences
+            x1 = Conv1D(filters=hp.Int(f'filters_{i}', 64, 256, 32),
+                        kernel_size=hp.Int(f'kernel_size_{i}', 3, 7),
+                        kernel_regularizer=l2(hp.Float(f'conv_l2_regul_{i}', 0.001, 0.1, sampling='LOG', default=0.5))
+                        )(x1)
+            x1 = BatchNormalization()(x1)
+            x1 = Activation('relu')(x1)
+            x1 = MaxPooling1D(pool_size=2)(x1)
+
+        x1 = GlobalMaxPooling1D()(x1)
+
+        # TF-IDF Input
+        tfidf_input = Input(shape=(self.input_tfidf_dim,), name='tfidf_input')
+        x2 = Dense(hp.Int('tfidf_dense_units', 32, 256, 32), activation='relu')(tfidf_input)
+        x2 = Dropout(hp.Float('dropout_tfidf', 0.2, 0.7, 0.1, default=0.5))(x2)
+
+        # Merge Embedding and TF-IDF branches
+        merged = concatenate([x1, x2])
+
+        # Dense Layer 1
+        x = Dense(units=hp.Int('dense_1_units', 32, 256, 32),
+                  activation='relu',
+                  kernel_regularizer=l2(hp.Float('dense_1_regul', 0.001, 0.1, sampling='LOG', default=0.5))
+                  )(merged)
+        x = BatchNormalization()(x)
+        x = Activation('relu')(x)
+        x = Dropout(hp.Float('dropout_3', 0.2, 0.7, 0.1, default=0.5))(x)
+
+        # Output Layer
+        output = Dense(self.num_classes,
+                       activation='softmax',
+                       kernel_regularizer=l2(hp.Float('output_regul', 0.001, 0.1, sampling='LOG', default=0.5))
+                       )(x)
+
+        # Create model
+        model = Model(inputs=[embedding_input, tfidf_input], outputs=output)
+
+        # Choose optimizer based on hyperparameter choice
+        optimizers = {
+            'adam': tf.keras.optimizers.Adam(hp.Float('learning_rate', 1e-4, 1e-2, sampling='LOG', default=0.01)),
+            'rmsprop': tf.keras.optimizers.RMSprop(hp.Float('learning_rate', 1e-4, 1e-2, sampling='LOG', default=0.01)),
+            'sgd': tf.keras.optimizers.SGD(hp.Float('learning_rate', 1e-4, 1e-2, sampling='LOG', default=0.01)),
+            'adagrad': tf.keras.optimizers.Adagrad(hp.Float('learning_rate', 1e-4, 1e-2, sampling='LOG', default=0.01)),
+            'adadelta': tf.keras.optimizers.Adadelta(hp.Float('learning_rate', 1e-4, 1e-2, sampling='LOG', default=0.01))
+        }
+        opt = optimizers[optimizer_choice]
+
+        model.compile(optimizer=opt,
+                      loss='categorical_crossentropy',
+                      metrics=['accuracy'])
+
+        return model
+
+reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.2, patience=5, min_lr=1e-6)
+
+# Initialize the CNN HyperModel with specific dimensions and classes
+hypermodel = CNNHyperModel(vocab_size=vocab_size, embedding_dim=embedding_dim, 
+                           embedding_matrix=embedding_matrix, num_classes=len(classes), 
+                           input_tfidf_dim=input_tfidf_dimension)
+
+# Define specific values for `input_tfidf_dimension` and `embedding_dim`
+input_tfidf_dimension = 484
+embedding_dim = 200 
+
+# # Initialize the RandomSearch tuner with defined search space
+tuner = RandomSearch(
+    hypermodel,
+    objective='val_accuracy',
+    max_trials=10,  
+    directory='keras_tuner_directory',
+    project_name='text_classification_2'
+)
+
+# Display an overview of the search space
+tuner.search_space_summary()
+
+# Search for best hyperparameters
+tuner.search([train_x_padded_smote, train_x_tfidf_smote], train_y_smote, 
+             validation_data=([val_x_padded, val_x_tfidf], val_y),
+             epochs=200, batch_size=32, verbose=1)
+
+#tuner.search([train_x_tfidf, train_x_padded], encoded_train_y, 
+                    #  validation_data=([val_x_tfidf, val_x_padded], val_y), 
+                     # epochs=200, batch_size=32, verbose=1, class_weight=computed_class_weights)
+
+# Get the best model from the search
+best_model = tuner.get_best_models(num_models=1)[0]
+
+# Get the best trial information
+best_trial = tuner.oracle.get_best_trials(num_trials=1)[0]
+
+# Access metrics and hyperparameters of the best trial
+best_trial_metrics = best_trial.metrics
+best_trial_hyperparameters = best_trial.hyperparameters.values
+
+print("Best trial metrics:", best_trial_metrics)
+print("Best trial hyperparameters:", best_trial_hyperparameters)
+
+# Further train the best model
+hist = best_model.fit([train_x_padded_smote, train_x_tfidf_smote], train_y_smote, 
+             validation_data=([val_x_padded, val_x_tfidf], val_y),
+             epochs=200, batch_size=32, verbose=1, callbacks=[reduce_lr])
+
+#hist = best_model.fit([train_x_tfidf, train_x_padded], encoded_train_y, 
+                     # validation_data=([val_x_tfidf, val_x_padded], val_y), 
+                      #epochs=200, batch_size=32, verbose=1, class_weight=computed_class_weights)
+
+# Define class weights dictionary for the best model
+class_weights_dict = {i: computed_class_weights[i] for i in range(len(computed_class_weights))}
+
+# Get the optimal hyperparameters and model
+best_hyperparameters = tuner.get_best_hyperparameters(num_trials=1)[0]
+best_model = tuner.get_best_models(num_models=1)[0]
+best_model.summary()
+
+# Save the best model
+best_model.save('my_hilbot_model_two.keras')
+
+# Save the tfidf_vectorizer
+with open('tfidf_vectorizer.pkl', 'wb') as f:
+    pickle.dump(tfidf_vectorizer, f)
+
+# Save tokenizer and labels
+with open('tokenizer.pkl', 'wb') as file:
+    pickle.dump(tokenizer, file)
+
+with open('labels.pkl', 'wb') as file:
+    pickle.dump(classes, file)
+
+# Save training history to a numpy file
+current_time = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+filename = f'training_history_{current_time}.json'
+
+with open(filename, 'w') as file:
+    json.dump(hist.history, file)
+
+
+
+# Save the best hyperparameters to a JSON file
+best_hyperparameters = tuner.get_best_hyperparameters()[0]
+with open('best_hyperparameters.json', 'w') as file:
+    json.dump(str(best_hyperparameters), file)
+    
+# Save tfidf_vectorizer with protocol for compatibility
+with open('tfidf_vectorizer.pkl', 'wb') as handle:
+    pickle.dump(tfidf_vectorizer, handle, protocol=pickle.HIGHEST_PROTOCOL)    
+
+# Save the embedding matrix to a Numpy binary file
+with open('embedding_matrix.npy', 'wb') as file:
+    np.save(file, embedding_matrix)  
