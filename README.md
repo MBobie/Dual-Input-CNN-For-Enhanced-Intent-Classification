@@ -1,4 +1,4 @@
-# Dual-Input CNN for Intent Classification in automated dialogue systems
+# Dual-Input CNN for Enhanced Intent Classification in automated dialogue systems
 
 ## Introduction
 This repository houses the training code for a Dual-Input Convolutional Neural Network (CNN) aimed at enhancing intent classification within financial conversational AI systems. The model leverages the semantic understanding capabilities of GloVe embeddings alongside the discriminative features extracted through TF-IDF vectorization.
