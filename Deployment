@@ -1,0 +1,206 @@
+# Import necessary libraries
+import nltk
+from nltk.stem import WordNetLemmatizer
+import pickle
+import numpy as np
+from keras.models import load_model
+import json
+import random
+from flask import Flask, render_template, request
+import logging
+import pandas as pd
+import re
+# Download popular NLTK packages
+nltk.download('popular')
+
+# Initialize lemmatizer
+lemmatizer = WordNetLemmatizer()
+
+# Load trained model and related data
+model = load_model('model.h5')
+intents = json.loads(open('data.json').read())
+words = pickle.load(open('texts.pkl', 'rb'))
+classes = pickle.load(open('labels.pkl', 'rb'))
+
+# Initialize logging
+logging.basicConfig(filename='chatbot.log', level=logging.INFO)
+
+# Also log to the console at INFO level
+console = logging.StreamHandler()
+console.setLevel(logging.INFO)
+logging.getLogger('').addHandler(console)
+
+# Define patterns for month, year, category and type
+month_pattern = r'\b(january|february|march|april|may|june|july|august|september|october|november|december)\b'
+year_pattern = r'\b\d{4}\b'
+category_pattern = r'\b(food|shopping|tithes|leisure|utilities|mutual funds|liquid cash|emergency fund|fixed deposit|other sources|main source)\b'  # Add all categories
+type_pattern = r'\b(income|expense|savings)\b' # Add all types
+amount_pattern = r'\d+\.\d{1,2}'
+
+# Function to retrieve financial data from CSV file 
+  
+def get_total_for_category(column, type, month, year, category):
+df = pd.read_csv('HilData.csv')
+
+    filters = []
+    if type:
+        filters.append(df['type'] == type)
+    if month:
+        filters.append(df['month'] == month)
+    if year:
+        filters.append(df['year'] == int(year))
+    if category:
+        filters.append(df['category'] == category)
+    
+    if not filters:
+        return "I couldn't understand your request. Please specify the details clearly."
+
+    filtered_df = df[np.logical_and.reduce(filters)]
+    
+    if filtered_df.empty:
+        return "I'm sorry, I don't have any information on that category."
+
+    total = filtered_df[column].sum()
+    return total
+
+
+# Function to clean sentences
+def clean_up_sentence(sentence):
+    sentence_words = nltk.word_tokenize(sentence)
+    sentence_words = [lemmatizer.lemmatize(word.lower()) for word in sentence_words]
+    return sentence_words
+
+# Function to convert sentence to bag-of-words
+def bow(sentence, words, show_details=False):
+    sentence_words = clean_up_sentence(sentence)
+    bag = [0] * len(words)
+    for s in sentence_words:
+        for i, w in enumerate(words):
+            if w == s:
+                bag[i] = 1
+                if show_details:
+                    print("found in bag: %s" % w)
+    return np.array(bag)
+
+# Function to predict the class of the user input
+def predict_class(sentence, model):
+    p = bow(sentence, words, show_details=False)
+    res = model.predict(np.array([p]))[0]
+    ERROR_THRESHOLD = 0.25
+    results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
+    results.sort(key=lambda x: x[1], reverse=True)
+    return_list = []
+    for r in results:
+        return_list.append({"intent": classes[r[0]], "probability": str(r[1])})
+    return return_list
+
+# Function to extract entities from the user's query
+def extract_entities(query):
+    entities = {}
+
+    # Search for patterns in the query
+    month_match = re.search(month_pattern, query, re.IGNORECASE)
+    year_match = re.search(year_pattern, query)
+    category_match = re.search(category_pattern, query, re.IGNORECASE)
+    type_match = re.search(type_pattern, query, re.IGNORECASE)
+    amount_match = re.search(amount_pattern, query)
+
+    # Logging extracted entities
+    if month_match:
+        entities['month'] = month_match.group(0).lower()
+        logging.info(f"Month entity detected: {entities['month']}")
+    if amount_match:
+        entities['amount'] = amount_match.group(0).lower()
+        logging.info(f"Amount entity detected: {entities['amount']}")        
+    if year_match:
+        entities['year'] = year_match.group(0)
+        logging.info(f"Year entity detected: {entities['year']}")
+    if category_match:
+        entities['category'] = category_match.group(0).lower()
+        logging.info(f"Category entity detected: {entities['category']}")
+    if type_match:
+        entities['type'] = type_match.group(0).lower()
+        logging.info(f"Type entity detected: {entities['type']}")
+
+    logging.info(f"Entities extracted from query: {entities}")
+    return entities
+
+# Function to get response from the bot
+def getResponse(ints, intents_json, userText):
+    tag = ints[0]['intent']
+    list_of_intents = intents_json['intents']
+    response = ""  # Initialize response variable
+    for i in list_of_intents:
+        if i['tag'] == tag:
+            response = random.choice(i['responses'])
+
+    # If response is still empty here, none of the intents matched
+    if not response:
+        return "I'm sorry, I didn't understand that. Could you please rephrase?"
+
+
+    entities = extract_entities(userText)
+    month = entities.get('month')
+    year = entities.get('year')
+    category = entities.get('category')
+    type = entities.get('type')
+    amount = entities.get('amount')
+    
+    if '{amount}' in response:
+        if category is None:
+            category = 'total'
+        if type is None:
+            type = 'total'
+        amount = get_total_for_category('Amount', type, month, year, category)
+        if isinstance(amount, str):
+            # The get_total_for_category function returned an error message
+            return amount
+        response = response.replace('{amount}', str(amount))
+        
+    if '{month}' in response:
+        if month is None:
+            return "I'm sorry, I didn't understand the month. Could you please rephrase?"
+        response = response.replace('{month}', month)
+        
+    if '{year}' in response:
+        if year is None:
+            return "I'm sorry, I didn't understand the year. Could you please rephrase?"
+        response = response.replace('{year}', year)
+
+    if '{category}' in response:
+        if category is None:
+            return "I'm sorry, I didn't understand the category. Could you please rephrase?"
+        response = response.replace('{category}', category)
+
+   if '{type}' in response:
+        if type is None:
+            return "I'm sorry, I didn't understand the type. Could you please rephrase?"
+        response = response.replace('{type}', type)
+
+    return response
+
+# Function to process the user's message
+def chatbot_response(msg):
+    ints = predict_class(msg, model)
+    if ints:
+        res = getResponse(ints, intents, msg)
+    else:
+        res = "I'm sorry, I didn't understand that. Could you please rephrase?"
+    return res
+
+# Setting up the Flask Web Server
+app = Flask(__name__)
+app.static_folder = 'static'
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+@app.route("/get")
+def get_bot_response():
+    userText = request.args.get('msg')  # get the user message
+    response = chatbot_response(userText)  # get the response from the chatbot
+    return response  # return the response
+
+if __name__ == "__main__":
+    app.run()
