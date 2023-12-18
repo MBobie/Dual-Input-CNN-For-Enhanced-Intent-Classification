@@ -1,0 +1,913 @@
+type,category,month,amount,year
+income,main source,march,4500.00,2016
+income,main source,april,4500.00,2016
+income,main source,may,4500.00,2016
+income,main source,june,4500.00,2016
+income,main source,july,4500.00,2016
+income,main source,august,4500.00,2016
+income,main source,september,4500.00,2016
+income,main source,october,4500.00,2016
+income,main source,november,4500.00,2016
+income,main source,december,5250.00,2016
+income,main source,january,5250.00,2017
+income,main source,february,5250.00,2017
+income,main source,march,5250.00,2017
+income,main source,april,5250.00,2017
+income,main source,may,5250.00,2017
+income,main source,june,5250.00,2017
+income,main source,july,5250.00,2017
+income,main source,august,5250.00,2017
+income,main source,september,5250.00,2017
+income,main source,october,5250.00,2017
+income,main source,november,5250.00,2017
+income,main source,december,5250.00,2017
+income,main source,january,6450.00,2018
+income,main source,february,6750.00,2018
+income,other sources,march,975.00,2016
+income,other sources,april,975.00,2016
+income,other sources,may,975.00,2016
+income,other sources,june,975.00,2016
+income,other sources,july,975.00,2016
+income,other sources,august,975.00,2016
+income,other sources,september,975.00,2016
+income,other sources,october,975.00,2016
+income,other sources,november,975.00,2016
+income,other sources,december,975.00,2016
+income,other sources,january,300.00,2017
+income,other sources,february,1050.00,2017
+income,other sources,march,1050.00,2017
+income,other sources,april,1050.00,2017
+income,other sources,may,1050.00,2017
+income,other sources,june,1050.00,2017
+income,other sources,july,1050.00,2017
+income,other sources,august,1050.00,2017
+income,other sources,september,1050.00,2017
+income,other sources,october,1350.00,2017
+income,other sources,november,1350.00,2017
+income,other sources,december,1350.00,2017
+income,other sources,january,1350.00,2018
+income,other sources,february,1350.00,2018
+savings,mutual funds,march,1050.00,2016
+savings,mutual funds,april,1050.00,2016
+savings,mutual funds,may,1050.00,2016
+savings,mutual funds,june,1050.00,2016
+savings,mutual funds,july,1050.00,2016
+savings,mutual funds,august,1050.00,2016
+savings,mutual funds,september,1050.00,2016
+savings,mutual funds,october,1050.00,2016
+savings,mutual funds,november,1050.00,2016
+savings,mutual funds,december,1500.00,2016
+savings,mutual funds,january,1500.00,2017
+savings,mutual funds,february,1500.00,2017
+savings,mutual funds,march,1500.00,2017
+savings,mutual funds,april,1500.00,2017
+savings,mutual funds,may,1500.00,2017
+savings,mutual funds,june,1500.00,2017
+savings,mutual funds,july,1500.00,2017
+savings,mutual funds,august,1500.00,2017
+savings,mutual funds,september,1500.00,2017
+savings,mutual funds,october,1500.00,2017
+savings,mutual funds,november,1500.00,2017
+savings,mutual funds,december,1500.00,2017
+savings,mutual funds,january,1500.00,2018
+savings,mutual funds,february,1500.00,2018
+savings,emergency fund,march,300.00,2016
+savings,emergency fund,april,300.00,2016
+savings,emergency fund,may,300.00,2016
+savings,emergency fund,june,300.00,2016
+savings,emergency fund,july,300.00,2016
+savings,emergency fund,august,0.00,2016
+savings,emergency fund,september,0.00,2016
+savings,emergency fund,october,300.00,2016
+savings,emergency fund,november,375.00,2016
+savings,emergency fund,december,375.00,2016
+savings,emergency fund,january,375.00,2017
+savings,emergency fund,february,375.00,2017
+savings,emergency fund,march,375.00,2017
+savings,emergency fund,april,375.00,2017
+savings,emergency fund,may,375.00,2017
+savings,emergency fund,june,375.00,2017
+savings,emergency fund,july,375.00,2017
+savings,emergency fund,august,375.00,2017
+savings,emergency fund,september,0.00,2017
+savings,emergency fund,october,0.00,2017
+savings,emergency fund,november,0.00,2017
+savings,emergency fund,december,0.00,2017
+savings,emergency fund,january,0.00,2018
+savings,emergency fund,february,0.00,2018
+savings,fixed deposit,march,375.00,2016
+savings,fixed deposit,april,375.00,2016
+savings,fixed deposit,may,375.00,2016
+savings,fixed deposit,june,375.00,2016
+savings,fixed deposit,july,375.00,2016
+savings,fixed deposit,august,375.00,2016
+savings,fixed deposit,september,0.00,2016
+savings,fixed deposit,october,375.00,2016
+savings,fixed deposit,november,0.00,2016
+savings,fixed deposit,december,0.00,2016
+savings,fixed deposit,january,0.00,2017
+savings,fixed deposit,february,300.00,2017
+savings,fixed deposit,march,300.00,2017
+savings,fixed deposit,april,300.00,2017
+savings,fixed deposit,may,300.00,2017
+savings,fixed deposit,june,150.00,2017
+savings,fixed deposit,july,150.00,2017
+savings,fixed deposit,august,150.00,2017
+savings,fixed deposit,september,300.00,2017
+savings,fixed deposit,october,0.00,2017
+savings,fixed deposit,november,0.00,2017
+savings,fixed deposit,december,0.00,2017
+savings,fixed deposit,january,0.00,2018
+savings,fixed deposit,february,0.00,2018
+savings,liquid cash,march,1470.00,2016
+savings,liquid cash,april,2220.00,2016
+savings,liquid cash,may,2220.00,2016
+savings,liquid cash,june,525.00,2016
+savings,liquid cash,july,1920.00,2016
+savings,liquid cash,august,2520.00,2016
+savings,liquid cash,september,2820.00,2016
+savings,liquid cash,october,2145.00,2016
+savings,liquid cash,november,825.00,2016
+savings,liquid cash,december,-330.00,2016
+savings,liquid cash,january,1320.00,2017
+savings,liquid cash,february,2520.00,2017
+savings,liquid cash,march,2520.00,2017
+savings,liquid cash,april,2520.00,2017
+savings,liquid cash,may,2520.00,2017
+savings,liquid cash,june,1350.00,2017
+savings,liquid cash,july,2595.00,2017
+savings,liquid cash,august,2595.00,2017
+savings,liquid cash,september,2820.00,2017
+savings,liquid cash,october,3270.00,2017
+savings,liquid cash,november,3270.00,2017
+savings,liquid cash,december,-30.00,2017
+savings,liquid cash,january,1770.00,2018
+savings,liquid cash,february,3870.00,2018
+expense,tithes,march,630.00,2016
+expense,tithes,april,630.00,2016
+expense,tithes,may,630.00,2016
+expense,tithes,june,1800.00,2016
+expense,tithes,july,630.00,2016
+expense,tithes,august,630.00,2016
+expense,tithes,september,630.00,2016
+expense,tithes,october,630.00,2016
+expense,tithes,november,2250.00,2016
+expense,tithes,december,630.00,2016
+expense,tithes,january,630.00,2017
+expense,tithes,february,630.00,2017
+expense,tithes,march,630.00,2017
+expense,tithes,april,630.00,2017
+expense,tithes,may,630.00,2017
+expense,tithes,june,1800.00,2017
+expense,tithes,july,630.00,2017
+expense,tithes,august,630.00,2017
+expense,tithes,september,630.00,2017
+expense,tithes,october,630.00,2017
+expense,tithes,november,630.00,2017
+expense,tithes,december,630.00,2017
+expense,tithes,january,630.00,2018
+expense,tithes,february,630.00,2018
+expense,food,march,375.00,2016
+expense,food,april,375.00,2016
+expense,food,may,375.00,2016
+expense,food,june,375.00,2016
+expense,food,july,375.00,2016
+expense,food,august,375.00,2016
+expense,food,september,375.00,2016
+expense,food,october,375.00,2016
+expense,food,november,375.00,2016
+expense,food,december,1200.00,2016
+expense,food,january,1200.00,2017
+expense,food,february,375.00,2017
+expense,food,march,375.00,2017
+expense,food,april,375.00,2017
+expense,food,may,375.00,2017
+expense,food,june,375.00,2017
+expense,food,july,375.00,2017
+expense,food,august,375.00,2017
+expense,food,september,375.00,2017
+expense,food,october,375.00,2017
+expense,food,november,375.00,2017
+expense,food,december,1500.00,2017
+expense,food,january,1050.00,2018
+expense,food,february,750.00,2018
+expense,health,march,150.00,2016
+expense,health,april,150.00,2016
+expense,health,may,150.00,2016
+expense,health,june,150.00,2016
+expense,health,july,150.00,2016
+expense,health,august,150.00,2016
+expense,health,september,150.00,2016
+expense,health,october,150.00,2016
+expense,health,november,150.00,2016
+expense,health,december,150.00,2016
+expense,health,january,225.00,2017
+expense,health,february,225.00,2017
+expense,health,march,225.00,2017
+expense,health,april,225.00,2017
+expense,health,may,225.00,2017
+expense,health,june,225.00,2017
+expense,health,july,225.00,2017
+expense,health,august,225.00,2017
+expense,health,september,225.00,2017
+expense,health,october,225.00,2017
+expense,health,november,225.00,2017
+expense,health,december,300.00,2017
+expense,health,january,300.00,2018
+expense,health,february,300.00,2018
+expense,utilities,march,225.00,2016
+expense,utilities,april,225.00,2016
+expense,utilities,may,225.00,2016
+expense,utilities,june,225.00,2016
+expense,utilities,july,225.00,2016
+expense,utilities,august,225.00,2016
+expense,utilities,september,300.00,2016
+expense,utilities,october,300.00,2016
+expense,utilities,november,300.00,2016
+expense,utilities,december,300.00,2016
+expense,utilities,january,300.00,2017
+expense,utilities,february,375.00,2017
+expense,utilities,march,375.00,2017
+expense,utilities,april,375.00,2017
+expense,utilities,may,375.00,2017
+expense,utilities,june,375.00,2017
+expense,utilities,july,450.00,2017
+expense,utilities,august,450.00,2017
+expense,utilities,september,450.00,2017
+expense,utilities,october,450.00,2017
+expense,utilities,november,450.00,2017
+expense,utilities,december,450.00,2017
+expense,utilities,january,750.00,2018
+expense,utilities,february,750.00,2018
+expense,leisure,march,750.00,2016
+expense,leisure,april,0.00,2016
+expense,leisure,may,0.00,2016
+expense,leisure,june,525.00,2016
+expense,leisure,july,300.00,2016
+expense,leisure,august,0.00,2016
+expense,leisure,september,0.00,2016
+expense,leisure,october,0.00,2016
+expense,leisure,november,0.00,2016
+expense,leisure,december,2250.00,2016
+expense,leisure,january,0.00,2017
+expense,leisure,february,0.00,2017
+expense,leisure,march,0.00,2017
+expense,leisure,april,0.00,2017
+expense,leisure,may,0.00,2017
+expense,leisure,june,0.00,2017
+expense,leisure,july,0.00,2017
+expense,leisure,august,0.00,2017
+expense,leisure,september,0.00,2017
+expense,leisure,october,0.00,2017
+expense,leisure,november,0.00,2017
+expense,leisure,december,2250.00,2017
+expense,leisure,january,1500.00,2018
+expense,leisure,february,0.00,2018
+expense,shopping,march,150.00,2016
+expense,shopping,april,150.00,2016
+expense,shopping,may,150.00,2016
+expense,shopping,june,150.00,2016
+expense,shopping,july,150.00,2016
+expense,shopping,august,150.00,2016
+expense,shopping,september,150.00,2016
+expense,shopping,october,150.00,2016
+expense,shopping,november,150.00,2016
+expense,shopping,december,150.00,2016
+expense,shopping,january,0.00,2017
+expense,shopping,february,0.00,2017
+expense,shopping,march,0.00,2017
+expense,shopping,april,0.00,2017
+expense,shopping,may,0.00,2017
+expense,shopping,june,150.00,2017
+expense,shopping,july,0.00,2017
+expense,shopping,august,0.00,2017
+expense,shopping,september,0.00,2017
+expense,shopping,october,150.00,2017
+expense,shopping,november,150.00,2017
+expense,shopping,december,0.00,2017
+expense,shopping,january,300.00,2018
+expense,shopping,february,300.00,2018
+income,main source,march,6000.00,2018
+income,main source,april,6000.00,2018
+income,main source,may,6000.00,2018
+income,main source,june,6000.00,2018
+income,main source,july,6000.00,2018
+income,main source,august,6000.00,2018
+income,main source,september,6000.00,2018
+income,main source,october,6000.00,2018
+income,main source,november,6000.00,2018
+income,main source,december,7000.00,2018
+income,main source,january,7000.00,2019
+income,main source,february,7000.00,2019
+income,main source,march,7000.00,2019
+income,main source,april,7000.00,2019
+income,main source,may,7000.00,2019
+income,main source,june,7000.00,2019
+income,main source,july,7000.00,2019
+income,main source,august,7000.00,2019
+income,main source,september,7000.00,2019
+income,main source,october,7000.00,2019
+income,main source,november,7000.00,2019
+income,main source,december,7000.00,2019
+income,main source,january,8600.00,2020
+income,main source,february,9000.00,2020
+income,other sources,march,1300.00,2018
+income,other sources,april,1300.00,2018
+income,other sources,may,1300.00,2018
+income,other sources,june,1300.00,2018
+income,other sources,july,1300.00,2018
+income,other sources,august,1300.00,2018
+income,other sources,september,1300.00,2018
+income,other sources,october,1300.00,2018
+income,other sources,november,1300.00,2018
+income,other sources,december,1300.00,2018
+income,other sources,january,400.00,2019
+income,other sources,february,1400.00,2019
+income,other sources,march,1400.00,2019
+income,other sources,april,1400.00,2019
+income,other sources,may,1400.00,2019
+income,other sources,june,1400.00,2019
+income,other sources,july,1400.00,2019
+income,other sources,august,1400.00,2019
+income,other sources,september,1400.00,2019
+income,other sources,october,1800.00,2019
+income,other sources,november,1800.00,2019
+income,other sources,december,1800.00,2019
+income,other sources,january,1800.00,2020
+income,other sources,february,1800.00,2020
+savings,mutual funds,march,1400.00,2018
+savings,mutual funds,april,1400.00,2018
+savings,mutual funds,may,1400.00,2018
+savings,mutual funds,june,1400.00,2018
+savings,mutual funds,july,1400.00,2018
+savings,mutual funds,august,1400.00,2018
+savings,mutual funds,september,1400.00,2018
+savings,mutual funds,october,1400.00,2018
+savings,mutual funds,november,1400.00,2018
+savings,mutual funds,december,2000.00,2018
+savings,mutual funds,january,2000.00,2019
+savings,mutual funds,february,2000.00,2019
+savings,mutual funds,march,2000.00,2019
+savings,mutual funds,april,2000.00,2019
+savings,mutual funds,may,2000.00,2019
+savings,mutual funds,june,2000.00,2019
+savings,mutual funds,july,2000.00,2019
+savings,mutual funds,august,2000.00,2019
+savings,mutual funds,september,2000.00,2019
+savings,mutual funds,october,2000.00,2019
+savings,mutual funds,november,2000.00,2019
+savings,mutual funds,december,2000.00,2019
+savings,mutual funds,january,2000.00,2020
+savings,mutual funds,february,2000.00,2020
+savings,emergency fund,march,400.00,2018
+savings,emergency fund,april,400.00,2018
+savings,emergency fund,may,400.00,2018
+savings,emergency fund,june,400.00,2018
+savings,emergency fund,july,400.00,2018
+savings,emergency fund,august,0.00,2018
+savings,emergency fund,september,0.00,2018
+savings,emergency fund,october,400.00,2018
+savings,emergency fund,november,500.00,2018
+savings,emergency fund,december,500.00,2018
+savings,emergency fund,january,500.00,2019
+savings,emergency fund,february,500.00,2019
+savings,emergency fund,march,500.00,2019
+savings,emergency fund,april,500.00,2019
+savings,emergency fund,may,500.00,2019
+savings,emergency fund,june,500.00,2019
+savings,emergency fund,july,500.00,2019
+savings,emergency fund,august,500.00,2019
+savings,emergency fund,september,0.00,2019
+savings,emergency fund,october,0.00,2019
+savings,emergency fund,november,0.00,2019
+savings,emergency fund,december,0.00,2019
+savings,emergency fund,january,0.00,2020
+savings,emergency fund,february,0.00,2020
+savings,fixed deposit,march,500.00,2018
+savings,fixed deposit,april,500.00,2018
+savings,fixed deposit,may,500.00,2018
+savings,fixed deposit,june,500.00,2018
+savings,fixed deposit,july,500.00,2018
+savings,fixed deposit,august,500.00,2018
+savings,fixed deposit,september,0.00,2018
+savings,fixed deposit,october,500.00,2018
+savings,fixed deposit,november,0.00,2018
+savings,fixed deposit,december,0.00,2018
+savings,fixed deposit,january,0.00,2019
+savings,fixed deposit,february,400.00,2019
+savings,fixed deposit,march,400.00,2019
+savings,fixed deposit,april,400.00,2019
+savings,fixed deposit,may,400.00,2019
+savings,fixed deposit,june,200.00,2019
+savings,fixed deposit,july,200.00,2019
+savings,fixed deposit,august,200.00,2019
+savings,fixed deposit,september,400.00,2019
+savings,fixed deposit,october,0.00,2019
+savings,fixed deposit,november,0.00,2019
+savings,fixed deposit,december,0.00,2019
+savings,fixed deposit,january,0.00,2020
+savings,fixed deposit,february,0.00,2020
+savings,liquid cash,march,1960.00,2018
+savings,liquid cash,april,2960.00,2018
+savings,liquid cash,may,2960.00,2018
+savings,liquid cash,june,700.00,2018
+savings,liquid cash,july,2560.00,2018
+savings,liquid cash,august,3360.00,2018
+savings,liquid cash,september,3760.00,2018
+savings,liquid cash,october,2860.00,2018
+savings,liquid cash,november,1100.00,2018
+savings,liquid cash,december,-440.00,2018
+savings,liquid cash,january,1760.00,2019
+savings,liquid cash,february,3360.00,2019
+savings,liquid cash,march,3360.00,2019
+savings,liquid cash,april,3360.00,2019
+savings,liquid cash,may,3360.00,2019
+savings,liquid cash,june,1800.00,2019
+savings,liquid cash,july,3460.00,2019
+savings,liquid cash,august,3460.00,2019
+savings,liquid cash,september,3760.00,2019
+savings,liquid cash,october,4360.00,2019
+savings,liquid cash,november,4360.00,2019
+savings,liquid cash,december,-40.00,2019
+savings,liquid cash,january,2360.00,2020
+savings,liquid cash,february,5160.00,2020
+expense,tithes,march,840.00,2018
+expense,tithes,april,840.00,2018
+expense,tithes,may,840.00,2018
+expense,tithes,june,2400.00,2018
+expense,tithes,july,840.00,2018
+expense,tithes,august,840.00,2018
+expense,tithes,september,840.00,2018
+expense,tithes,october,840.00,2018
+expense,tithes,november,3000.00,2018
+expense,tithes,december,840.00,2018
+expense,tithes,january,840.00,2019
+expense,tithes,february,840.00,2019
+expense,tithes,march,840.00,2019
+expense,tithes,april,840.00,2019
+expense,tithes,may,840.00,2019
+expense,tithes,june,2400.00,2019
+expense,tithes,july,840.00,2019
+expense,tithes,august,840.00,2019
+expense,tithes,september,840.00,2019
+expense,tithes,october,840.00,2019
+expense,tithes,november,840.00,2019
+expense,tithes,december,840.00,2019
+expense,tithes,january,840.00,2020
+expense,tithes,february,840.00,2020
+expense,food,march,500.00,2018
+expense,food,april,500.00,2018
+expense,food,may,500.00,2018
+expense,food,june,500.00,2018
+expense,food,july,500.00,2018
+expense,food,august,500.00,2018
+expense,food,september,500.00,2018
+expense,food,october,500.00,2018
+expense,food,november,500.00,2018
+expense,food,december,1600.00,2018
+expense,food,january,1600.00,2019
+expense,food,february,500.00,2019
+expense,food,march,500.00,2019
+expense,food,april,500.00,2019
+expense,food,may,500.00,2019
+expense,food,june,500.00,2019
+expense,food,july,500.00,2019
+expense,food,august,500.00,2019
+expense,food,september,500.00,2019
+expense,food,october,500.00,2019
+expense,food,november,500.00,2019
+expense,food,december,2000.00,2019
+expense,food,january,1400.00,2020
+expense,food,february,1000.00,2020
+expense,health,march,200.00,2018
+expense,health,april,200.00,2018
+expense,health,may,200.00,2018
+expense,health,june,200.00,2018
+expense,health,july,200.00,2018
+expense,health,august,200.00,2018
+expense,health,september,200.00,2018
+expense,health,october,200.00,2018
+expense,health,november,200.00,2018
+expense,health,december,200.00,2018
+expense,health,january,300.00,2019
+expense,health,february,300.00,2019
+expense,health,march,300.00,2019
+expense,health,april,300.00,2019
+expense,health,may,300.00,2019
+expense,health,june,300.00,2019
+expense,health,july,300.00,2019
+expense,health,august,300.00,2019
+expense,health,september,300.00,2019
+expense,health,october,300.00,2019
+expense,health,november,300.00,2019
+expense,health,december,400.00,2019
+expense,health,january,400.00,2020
+expense,health,february,400.00,2020
+expense,utilities,march,300.00,2018
+expense,utilities,april,300.00,2018
+expense,utilities,may,300.00,2018
+expense,utilities,june,300.00,2018
+expense,utilities,july,300.00,2018
+expense,utilities,august,300.00,2018
+expense,utilities,september,400.00,2018
+expense,utilities,october,400.00,2018
+expense,utilities,november,400.00,2018
+expense,utilities,december,400.00,2018
+expense,utilities,january,400.00,2019
+expense,utilities,february,500.00,2019
+expense,utilities,march,500.00,2019
+expense,utilities,april,500.00,2019
+expense,utilities,may,500.00,2019
+expense,utilities,june,500.00,2019
+expense,utilities,july,600.00,2019
+expense,utilities,august,600.00,2019
+expense,utilities,september,600.00,2019
+expense,utilities,october,600.00,2019
+expense,utilities,november,600.00,2019
+expense,utilities,december,600.00,2019
+expense,utilities,january,1000.00,2020
+expense,utilities,february,1000.00,2020
+expense,leisure,march,1000.00,2018
+expense,leisure,april,0.00,2018
+expense,leisure,may,0.00,2018
+expense,leisure,june,700.00,2018
+expense,leisure,july,400.00,2018
+expense,leisure,august,0.00,2018
+expense,leisure,september,0.00,2018
+expense,leisure,october,0.00,2018
+expense,leisure,november,0.00,2018
+expense,leisure,december,3000.00,2018
+expense,leisure,january,0.00,2019
+expense,leisure,february,0.00,2019
+expense,leisure,march,0.00,2019
+expense,leisure,april,0.00,2019
+expense,leisure,may,0.00,2019
+expense,leisure,june,0.00,2019
+expense,leisure,july,0.00,2019
+expense,leisure,august,0.00,2019
+expense,leisure,september,0.00,2019
+expense,leisure,october,0.00,2019
+expense,leisure,november,0.00,2019
+expense,leisure,december,3000.00,2019
+expense,leisure,january,2000.00,2020
+expense,leisure,february,0.00,2020
+expense,shopping,march,200.00,2018
+expense,shopping,april,200.00,2018
+expense,shopping,may,200.00,2018
+expense,shopping,june,200.00,2018
+expense,shopping,july,200.00,2018
+expense,shopping,august,200.00,2018
+expense,shopping,september,200.00,2018
+expense,shopping,october,200.00,2018
+expense,shopping,november,200.00,2018
+expense,shopping,december,200.00,2018
+expense,shopping,january,0.00,2019
+expense,shopping,february,0.00,2019
+expense,shopping,march,0.00,2019
+expense,shopping,april,0.00,2019
+expense,shopping,may,0.00,2019
+expense,shopping,june,200.00,2019
+expense,shopping,july,0.00,2019
+expense,shopping,august,0.00,2019
+expense,shopping,september,0.00,2019
+expense,shopping,october,200.00,2019
+expense,shopping,november,200.00,2019
+expense,shopping,december,0.00,2019
+expense,shopping,january,400.00,2020
+expense,shopping,february,400.00,2020
+income,main source,march,3000.00,2020
+income,main source,april,3000.00,2020
+income,main source,may,3000.00,2020
+income,main source,june,3000.00,2020
+income,main source,july,3000.00,2020
+income,main source,august,3000.00,2020
+income,main source,september,3000.00,2020
+income,main source,october,3000.00,2020
+income,main source,november,3000.00,2020
+income,main source,december,3500.00,2020
+income,main source,january,3500.00,2021
+income,main source,february,3500.00,2021
+income,main source,march,3500.00,2021
+income,main source,april,3500.00,2021
+income,main source,may,3500.00,2021
+income,main source,june,3500.00,2021
+income,main source,july,3500.00,2021
+income,main source,august,3500.00,2021
+income,main source,september,3500.00,2021
+income,main source,october,3500.00,2021
+income,main source,november,3500.00,2021
+income,main source,december,3500.00,2021
+income,main source,january,4300.00,2022
+income,main source,february,4500.00,2022
+income,main source,march,4500.00,2022
+income,main source,april,4500.00,2022
+income,main source,may,4500.00,2022
+income,main source,june,4500.00,2022
+income,other sources,march,650.00,2020
+income,other sources,april,650.00,2020
+income,other sources,may,650.00,2020
+income,other sources,june,650.00,2020
+income,other sources,july,650.00,2020
+income,other sources,august,650.00,2020
+income,other sources,september,650.00,2020
+income,other sources,october,650.00,2020
+income,other sources,november,650.00,2020
+income,other sources,december,650.00,2020
+income,other sources,january,200.00,2021
+income,other sources,february,700.00,2021
+income,other sources,march,700.00,2021
+income,other sources,april,700.00,2021
+income,other sources,may,700.00,2021
+income,other sources,june,700.00,2021
+income,other sources,july,700.00,2021
+income,other sources,august,700.00,2021
+income,other sources,september,700.00,2021
+income,other sources,october,900.00,2021
+income,other sources,november,900.00,2021
+income,other sources,december,900.00,2021
+income,other sources,january,900.00,2022
+income,other sources,february,900.00,2022
+income,other sources,march,900.00,2022
+income,other sources,april,900.00,2022
+income,other sources,may,900.00,2022
+income,other sources,june,900.00,2022
+savings,mutual funds,march,700.00,2020
+savings,mutual funds,april,700.00,2020
+savings,mutual funds,may,700.00,2020
+savings,mutual funds,june,700.00,2020
+savings,mutual funds,july,700.00,2020
+savings,mutual funds,august,700.00,2020
+savings,mutual funds,september,700.00,2020
+savings,mutual funds,october,700.00,2020
+savings,mutual funds,november,700.00,2020
+savings,mutual funds,december,1000.00,2020
+savings,mutual funds,january,1000.00,2021
+savings,mutual funds,february,1000.00,2021
+savings,mutual funds,march,1000.00,2021
+savings,mutual funds,april,1000.00,2021
+savings,mutual funds,may,1000.00,2021
+savings,mutual funds,june,1000.00,2021
+savings,mutual funds,july,1000.00,2021
+savings,mutual funds,august,1000.00,2021
+savings,mutual funds,september,1000.00,2021
+savings,mutual funds,october,1000.00,2021
+savings,mutual funds,november,1000.00,2021
+savings,mutual funds,december,1000.00,2021
+savings,mutual funds,january,1000.00,2022
+savings,mutual funds,february,1000.00,2022
+savings,mutual funds,march,1000.00,2022
+savings,mutual funds,april,1000.00,2022
+savings,mutual funds,may,1000.00,2022
+savings,mutual funds,june,1000.00,2022
+savings,emergency fund,march,200.00,2020
+savings,emergency fund,april,200.00,2020
+savings,emergency fund,may,200.00,2020
+savings,emergency fund,june,200.00,2020
+savings,emergency fund,july,200.00,2020
+savings,emergency fund,august,0.00,2020
+savings,emergency fund,september,0.00,2020
+savings,emergency fund,october,200.00,2020
+savings,emergency fund,november,250.00,2020
+savings,emergency fund,december,250.00,2020
+savings,emergency fund,january,250.00,2021
+savings,emergency fund,february,250.00,2021
+savings,emergency fund,march,250.00,2021
+savings,emergency fund,april,250.00,2021
+savings,emergency fund,may,250.00,2021
+savings,emergency fund,june,250.00,2021
+savings,emergency fund,july,250.00,2021
+savings,emergency fund,august,250.00,2021
+savings,emergency fund,september,0.00,2021
+savings,emergency fund,october,0.00,2021
+savings,emergency fund,november,0.00,2021
+savings,emergency fund,december,0.00,2021
+savings,emergency fund,january,0.00,2022
+savings,emergency fund,february,0.00,2022
+savings,emergency fund,march,0.00,2022
+savings,emergency fund,april,0.00,2022
+savings,emergency fund,may,2500.00,2022
+savings,emergency fund,june,0.00,2022
+savings,fixed deposit,march,250.00,2020
+savings,fixed deposit,april,250.00,2020
+savings,fixed deposit,may,250.00,2020
+savings,fixed deposit,june,250.00,2020
+savings,fixed deposit,july,250.00,2020
+savings,fixed deposit,august,250.00,2020
+savings,fixed deposit,september,0.00,2020
+savings,fixed deposit,october,250.00,2020
+savings,fixed deposit,november,0.00,2020
+savings,fixed deposit,december,0.00,2020
+savings,fixed deposit,january,0.00,2021
+savings,fixed deposit,february,200.00,2021
+savings,fixed deposit,march,200.00,2021
+savings,fixed deposit,april,200.00,2021
+savings,fixed deposit,may,200.00,2021
+savings,fixed deposit,june,100.00,2021
+savings,fixed deposit,july,100.00,2021
+savings,fixed deposit,august,100.00,2021
+savings,fixed deposit,september,200.00,2021
+savings,fixed deposit,october,0.00,2021
+savings,fixed deposit,november,0.00,2021
+savings,fixed deposit,december,0.00,2021
+savings,fixed deposit,january,0.00,2022
+savings,fixed deposit,february,0.00,2022
+savings,fixed deposit,march,0.00,2022
+savings,fixed deposit,april,0.00,2022
+savings,fixed deposit,may,0.00,2022
+savings,fixed deposit,june,200.00,2022
+savings,liquid cash,march,980.00,2020
+savings,liquid cash,april,1480.00,2020
+savings,liquid cash,may,1480.00,2020
+savings,liquid cash,june,350.00,2020
+savings,liquid cash,july,1280.00,2020
+savings,liquid cash,august,1680.00,2020
+savings,liquid cash,september,1880.00,2020
+savings,liquid cash,october,1430.00,2020
+savings,liquid cash,november,550.00,2020
+savings,liquid cash,december,-220.00,2020
+savings,liquid cash,january,880.00,2021
+savings,liquid cash,february,1680.00,2021
+savings,liquid cash,march,1680.00,2021
+savings,liquid cash,april,1680.00,2021
+savings,liquid cash,may,1680.00,2021
+savings,liquid cash,june,900.00,2021
+savings,liquid cash,july,1730.00,2021
+savings,liquid cash,august,1730.00,2021
+savings,liquid cash,september,1880.00,2021
+savings,liquid cash,october,2180.00,2021
+savings,liquid cash,november,2180.00,2021
+savings,liquid cash,december,-20.00,2021
+savings,liquid cash,january,1180.00,2022
+savings,liquid cash,february,2580.00,2022
+savings,liquid cash,march,2780.00,2022
+savings,liquid cash,april,2780.00,2022
+savings,liquid cash,may,280.00,2022
+savings,liquid cash,june,2000.00,2022
+expense,tithes,march,420.00,2020
+expense,tithes,april,420.00,2020
+expense,tithes,may,420.00,2020
+expense,tithes,june,1200.00,2020
+expense,tithes,july,420.00,2020
+expense,tithes,august,420.00,2020
+expense,tithes,september,420.00,2020
+expense,tithes,october,420.00,2020
+expense,tithes,november,1500.00,2020
+expense,tithes,december,420.00,2020
+expense,tithes,january,420.00,2021
+expense,tithes,february,420.00,2021
+expense,tithes,march,420.00,2021
+expense,tithes,april,420.00,2021
+expense,tithes,may,420.00,2021
+expense,tithes,june,1200.00,2021
+expense,tithes,july,420.00,2021
+expense,tithes,august,420.00,2021
+expense,tithes,september,420.00,2021
+expense,tithes,october,420.00,2021
+expense,tithes,november,420.00,2021
+expense,tithes,december,420.00,2021
+expense,tithes,january,420.00,2022
+expense,tithes,february,420.00,2022
+expense,tithes,march,420.00,2022
+expense,tithes,april,420.00,2022
+expense,tithes,may,420.00,2022
+expense,tithes,june,1000.00,2022
+expense,food,march,250.00,2020
+expense,food,april,250.00,2020
+expense,food,may,250.00,2020
+expense,food,june,250.00,2020
+expense,food,july,250.00,2020
+expense,food,august,250.00,2020
+expense,food,september,250.00,2020
+expense,food,october,250.00,2020
+expense,food,november,250.00,2020
+expense,food,december,800.00,2020
+expense,food,january,800.00,2021
+expense,food,february,250.00,2021
+expense,food,march,250.00,2021
+expense,food,april,250.00,2021
+expense,food,may,250.00,2021
+expense,food,june,250.00,2021
+expense,food,july,250.00,2021
+expense,food,august,250.00,2021
+expense,food,september,250.00,2021
+expense,food,october,250.00,2021
+expense,food,november,250.00,2021
+expense,food,december,1000.00,2021
+expense,food,january,700.00,2022
+expense,food,february,500.00,2022
+expense,food,march,500.00,2022
+expense,food,april,500.00,2022
+expense,food,may,500.00,2022
+expense,food,june,500.00,2022
+expense,health,march,100.00,2020
+expense,health,april,100.00,2020
+expense,health,may,100.00,2020
+expense,health,june,100.00,2020
+expense,health,july,100.00,2020
+expense,health,august,100.00,2020
+expense,health,september,100.00,2020
+expense,health,october,100.00,2020
+expense,health,november,100.00,2020
+expense,health,december,100.00,2020
+expense,health,january,150.00,2021
+expense,health,february,150.00,2021
+expense,health,march,150.00,2021
+expense,health,april,150.00,2021
+expense,health,may,150.00,2021
+expense,health,june,150.00,2021
+expense,health,july,150.00,2021
+expense,health,august,150.00,2021
+expense,health,september,150.00,2021
+expense,health,october,150.00,2021
+expense,health,november,150.00,2021
+expense,health,december,200.00,2021
+expense,health,january,200.00,2022
+expense,health,february,200.00,2022
+expense,health,march,200.00,2022
+expense,health,april,200.00,2022
+expense,health,may,200.00,2022
+expense,health,june,200.00,2022
+expense,utilities,march,150.00,2020
+expense,utilities,april,150.00,2020
+expense,utilities,may,150.00,2020
+expense,utilities,june,150.00,2020
+expense,utilities,july,150.00,2020
+expense,utilities,august,150.00,2020
+expense,utilities,september,200.00,2020
+expense,utilities,october,200.00,2020
+expense,utilities,november,200.00,2020
+expense,utilities,december,200.00,2020
+expense,utilities,january,200.00,2021
+expense,utilities,february,250.00,2021
+expense,utilities,march,250.00,2021
+expense,utilities,april,250.00,2021
+expense,utilities,may,250.00,2021
+expense,utilities,june,250.00,2021
+expense,utilities,july,300.00,2021
+expense,utilities,august,300.00,2021
+expense,utilities,september,300.00,2021
+expense,utilities,october,300.00,2021
+expense,utilities,november,300.00,2021
+expense,utilities,december,300.00,2021
+expense,utilities,january,500.00,2022
+expense,utilities,february,500.00,2022
+expense,utilities,march,500.00,2022
+expense,utilities,april,500.00,2022
+expense,utilities,may,500.00,2022
+expense,utilities,june,500.00,2022
+expense,leisure,march,500.00,2020
+expense,leisure,april,0.00,2020
+expense,leisure,may,0.00,2020
+expense,leisure,june,350.00,2020
+expense,leisure,july,200.00,2020
+expense,leisure,august,0.00,2020
+expense,leisure,september,0.00,2020
+expense,leisure,october,0.00,2020
+expense,leisure,november,0.00,2020
+expense,leisure,december,1500.00,2020
+expense,leisure,january,0.00,2021
+expense,leisure,february,0.00,2021
+expense,leisure,march,0.00,2021
+expense,leisure,april,0.00,2021
+expense,leisure,may,0.00,2021
+expense,leisure,june,0.00,2021
+expense,leisure,july,0.00,2021
+expense,leisure,august,0.00,2021
+expense,leisure,september,0.00,2021
+expense,leisure,october,0.00,2021
+expense,leisure,november,0.00,2021
+expense,leisure,december,1500.00,2021
+expense,leisure,january,1000.00,2022
+expense,leisure,february,0.00,2022
+expense,leisure,march,0.00,2022
+expense,leisure,april,0.00,2022
+expense,leisure,may,0.00,2022
+expense,leisure,june,0.00,2022
+expense,shopping,march,100.00,2020
+expense,shopping,april,100.00,2020
+expense,shopping,may,100.00,2020
+expense,shopping,june,100.00,2020
+expense,shopping,july,100.00,2020
+expense,shopping,august,100.00,2020
+expense,shopping,september,100.00,2020
+expense,shopping,october,100.00,2020
+expense,shopping,november,100.00,2020
+expense,shopping,december,100.00,2020
+expense,shopping,january,0.00,2021
+expense,shopping,february,0.00,2021
+expense,shopping,march,0.00,2021
+expense,shopping,april,0.00,2021
+expense,shopping,may,0.00,2021
+expense,shopping,june,100.00,2021
+expense,shopping,july,0.00,2021
+expense,shopping,august,0.00,2021
+expense,shopping,september,0.00,2021
+expense,shopping,october,100.00,2021
+expense,shopping,november,100.00,2021
+expense,shopping,december,0.00,2021
+expense,shopping,january,200.00,2022
+expense,shopping,february,200.00,2022
+expense,shopping,march,0.00,2022
+expense,shopping,april,0.00,2022
+expense,shopping,may,0.00,2022
+expense,shopping,june,0.00,2022
