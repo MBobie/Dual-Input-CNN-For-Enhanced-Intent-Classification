@@ -283,7 +283,7 @@ train_x_tfidf, val_x_tfidf, train_x_padded, val_x_padded, train_y, val_y = train
     tfidf_features_array, padded_sequences, train_y_one_hot, test_size=0.2, random_state=42)
 
 # Splitting for encoded labels
-_, _, _, _, encoded_train_y, encoded_val_y = train_test_split(
+train_x_tfidf, val_x_tfidf, train_x_padded, val_x_padded, encoded_train_y, encoded_val_y = train_test_split(
     tfidf_features_array, padded_sequences, encoded_labels, test_size=0.2, random_state=42)
 
 print(f"train_x_tfidf shape:{train_x_tfidf.shape}")
